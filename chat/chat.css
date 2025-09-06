@@ -1,3 +1,39 @@
+#chat-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+#messages {
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+#messages div {
+  margin-bottom: 0.5rem;
+}
+#chat-form {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#chat-form input[type="text"] {
+  flex: 1;
+  padding: 0.5em;
+}
+#chat-form input[type="file"] {
+  flex: 2;
+}
+#chat-form button {
+  padding: 0.5em 1em;
+}
 img.chat-img {
   max-width: 200px;
   display: block;

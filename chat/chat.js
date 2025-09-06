@@ -1,10 +1,13 @@
+const CLOUD_NAME = 'duxnzv3vy'; // your Cloudinary cloud name
+const UPLOAD_PRESET = 'ml_default'; // default unsigned preset, can change in Cloudinary dashboard
+
 const messagesDiv = document.getElementById('messages');
 const chatForm = document.getElementById('chat-form');
 const usernameInput = document.getElementById('username');
 const messageInput = document.getElementById('message');
 const imageInput = document.getElementById('image');
 
-// Simple chat messages array (replace with realtime DB for production)
+// Simple in-memory chat messages (will reset on page reload)
 const messages = [];
 
 function renderMessages() {
@@ -30,16 +33,17 @@ chatForm.addEventListener('submit', async e => {
   const imageFile = imageInput.files[0];
   let imageUrl = null;
 
+  if (!username && !text && !imageFile) return;
+
   if (imageFile) {
     if (imageFile.size > 2 * 1024 * 1024) {
       alert("Resim 2MB'dan büyük olamaz!");
       return;
     }
-    // Upload to Cloudinary unsigned (secure enough for demo/public chat)
     const formData = new FormData();
     formData.append('file', imageFile);
-    formData.append('upload_preset', 'ml_default'); // default unsigned preset
-    const res = await fetch('https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload', {
+    formData.append('upload_preset', UPLOAD_PRESET);
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
       method: 'POST',
       body: formData
     });
@@ -52,3 +56,6 @@ chatForm.addEventListener('submit', async e => {
   messageInput.value = '';
   imageInput.value = '';
 });
+
+// Initial render
+renderMessages();
