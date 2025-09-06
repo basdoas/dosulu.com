@@ -8,3 +8,19 @@ body {
 h1 {
   color: #3498db;
 }
+
+/* Language switcher in bottom right */
+.lang-switcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 8px 14px;
+  z-index: 1000;
+  font-size: 1rem;
+}
+.lang-switcher label {
+  margin-right: 8px;
+}
