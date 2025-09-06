@@ -9,7 +9,6 @@ h1 {
   color: #3498db;
 }
 
-/* Language switcher in bottom right */
 .lang-switcher {
   position: fixed;
   bottom: 20px;
@@ -23,4 +22,19 @@ h1 {
 }
 .lang-switcher label {
   margin-right: 8px;
+}
+
+/* Automatically switch to dark theme if browser prefers dark */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #181818;
+    color: #fff;
+  }
+  h1 {
+    color: #90caf9;
+  }
+  .lang-switcher {
+    background: rgba(48,48,48,0.95);
+    color: #fff;
+  }
 }
