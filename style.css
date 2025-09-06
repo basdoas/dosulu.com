@@ -9,31 +9,42 @@ h1 {
   color: #3498db;
 }
 
-.lang-switcher {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(255,255,255,0.95);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 8px 14px;
-  z-index: 1000;
-  font-size: 1rem;
+/* Dark theme styles */
+body.dark-theme {
+  background: #181818;
+  color: #fff;
 }
-.lang-switcher label {
-  margin-right: 8px;
+body.dark-theme h1 {
+  color: #90caf9;
+}
+body.dark-theme .lang-switcher {
+  background: rgba(48,48,48,0.95);
+  color: #fff;
 }
 
-/* Automatically switch to dark theme if browser prefers dark */
+/* Light theme (optional, for explicit setting) */
+body.light-theme {
+  background: #f7f7f7;
+  color: #222;
+}
+body.light-theme h1 {
+  color: #3498db;
+}
+body.light-theme .lang-switcher {
+  background: rgba(255,255,255,0.95);
+  color: #222;
+}
+
+/* Fallback for auto (browser preference) */
 @media (prefers-color-scheme: dark) {
-  body {
+  body:not(.light-theme):not(.dark-theme) {
     background: #181818;
     color: #fff;
   }
-  h1 {
+  body:not(.light-theme):not(.dark-theme) h1 {
     color: #90caf9;
   }
-  .lang-switcher {
+  body:not(.light-theme):not(.dark-theme) .lang-switcher {
     background: rgba(48,48,48,0.95);
     color: #fff;
   }
