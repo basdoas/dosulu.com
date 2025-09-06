@@ -23,6 +23,22 @@ h1 {
   margin-right: 8px;
 }
 
+#clock-container {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: rgba(0,0,0,0.04);
+  border-radius: 8px;
+  max-width: 350px;
+}
+#clocks {
+  list-style: none;
+  padding: 0;
+  font-size: 1.2em;
+}
+#clocks li {
+  margin-bottom: 0.5em;
+}
+
 /* Dark theme styles */
 body.dark-theme {
   background: #181818;
@@ -34,6 +50,12 @@ body.dark-theme h1 {
 body.dark-theme .lang-switcher {
   background: rgba(48,48,48,0.95);
   color: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  #clock-container {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+  }
 }
 
 /* Light theme styles */

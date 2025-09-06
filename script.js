@@ -55,4 +55,29 @@ document.addEventListener('DOMContentLoaded', function() {
       applyTheme();
     }
   });
+
+  // World clocks updater
+  function updateClocks() {
+    const zones = {
+      'clock-istanbul': 'Europe/Istanbul',
+      'clock-london': 'Europe/London',
+      'clock-ny': 'America/New_York',
+      'clock-tokyo': 'Asia/Tokyo'
+    };
+
+    Object.entries(zones).forEach(([id, tz]) => {
+      const now = new Date();
+      const time = now.toLocaleTimeString('en-US', {
+        timeZone: tz,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      document.getElementById(id).textContent = time;
+    });
+  }
+
+  // Start the clock and update every second
+  setInterval(updateClocks, 1000);
+  window.addEventListener('DOMContentLoaded', updateClocks);
 });
