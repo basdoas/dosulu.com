@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const themeToggleBtn = document.getElementById('theme-toggle');
   const supportedLangs = ['tr','en','it','el'];
 
-  // --- Language loader as before ---
+  // Language loader
   let detectedLang = (navigator.language || navigator.userLanguage).slice(0,2);
   if (!supportedLangs.includes(detectedLang)) detectedLang = 'tr';
   select.value = detectedLang;
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadLang(select.value);
   });
 
-  // --- Theme toggle ---
+  // Theme toggle
   function applyTheme(theme) {
     document.body.classList.remove('light-theme', 'dark-theme');
     if (theme === 'dark') {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     applyTheme(newTheme);
   });
 
-  // Optional: React to browser preference changes unless user has set a theme
+  // React to browser preference changes unless user has set a theme
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
     if (!localStorage.getItem('theme')) {
       applyTheme();
