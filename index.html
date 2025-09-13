@@ -79,3 +79,31 @@ loadLang(defaultLang);
 </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Çok Dilli Saat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">Saat</h1>
+    <div id="clock">00:00:00</div>
+
+    <div class="controls">
+      <select id="languageSelector">
+        <option value="tr">Türkçe</option>
+        <option value="el">Ελληνικά</option>
+        <option value="it">Italiano</option>
+        <option value="zh">古中文</option>
+      </select>
+
+      <button id="themeToggle">Tema Değiştir</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
