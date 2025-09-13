@@ -80,3 +80,25 @@ showSurprise();
 
 // sex
 //sex 
+
+
+function updateClock() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString();
+  document.getElementById("clock-time").textContent = timeString;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+
+
+
+function updateClock() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString();
+  document.getElementById("clock-time").textContent = timeString;
+}
+
+setInterval(updateClock, 1000);
+updateClock(); // Sayfa açıldığında hemen göster
