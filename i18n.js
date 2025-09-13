@@ -68,3 +68,61 @@ window.LANGUAGES = {
     ]
   }
 };
+// i18n.js
+function loadLanguage(lang) {
+  const dict = window.LANGUAGES[lang];
+  if (!dict) return;
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) {
+      el.innerText = dict[key];
+    }
+  });
+
+  document.documentElement.lang = lang;
+}
+
+// açılışta default dil yükle
+document.addEventListener("DOMContentLoaded", () => {
+  const select = document.getElementById("lang-select");
+  loadLanguage(select.value);
+
+  select.addEventListener("change", () => {
+    loadLanguage(select.value);
+  });
+});
+  const now = new Date();
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const timeStr = now.toLocaleTimeString(currentLang, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  document.getElementById('clock').textContent = timeStr;
+  document.getElementById('clock-label').textContent = i18n('clockLabel', {tz});
+}
+
+// Theme toggle
+const themeToggleBtn = document.getElementById('theme-toggle');
+const rootHtml = document.documentElement;
+function setTheme(theme) {
+  rootHtml.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  themeToggleBtn.textContent = theme === 'light' ? i18n('darkMode') : i18n('lightMode');
+}
+themeToggleBtn.onclick = () => {
+  const theme = rootHtml.getAttribute('data-theme') === 'dark' ? 'light' : 'dark
+  setTheme(theme);
+}
+
+return theme;
+};
+
+// Initialize theme
+setTheme(localStorage.getItem('theme') || 'light');
+
+// Language selector
+const langSelect = document.getElementById('lang-select');
+Object.entries(window.LANGUAGES).forEach(([code, langObj]) => {
+  const opt = document.createElement('option');
+  opt.value = code;
+  opt.textContent = langObj.__name;
+  langSelect.appendChild(opt);
+}
