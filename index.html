@@ -1,0 +1,81 @@
+<!doctype html>
+.lang-switch{display:flex;gap:8px}
+button{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:8px;color:var(--text);cursor:pointer}
+button.active{background:rgba(255,255,255,0.06)}
+main h1{margin:0 0 10px}
+.meta{opacity:0.85;font-size:0.95rem}
+</style>
+</head>
+<body>
+<div class="card">
+<header>
+<div>
+<strong id="site-title">Multilingual Demo</strong>
+<div class="meta" id="site-desc">A tiny static example with language files in <code>/lang/</code></div>
+</div>
+<div class="lang-switch" aria-label="Language switcher">
+<button id="btn-en">English</button>
+<button id="btn-tr">Türkçe</button>
+</div>
+</header>
+
+
+<main id="content">
+<!-- dil dosyası buraya yüklenecek -->
+<h1>Loading…</h1>
+</main>
+
+
+<footer style="margin-top:18px;font-size:0.9rem;opacity:0.8">Dil dosyaları: <code>/lang/en.html</code> ve <code>/lang/tr.html</code></footer>
+</div>
+
+
+<script>
+// Varsayılan dil
+const defaultLang = localStorage.getItem('site_lang') || navigator.language?.startsWith('tr') ? 'tr' : 'en';
+
+
+const btnEn = document.getElementById('btn-en');
+const btnTr = document.getElementById('btn-tr');
+const content = document.getElementById('content');
+const siteTitle = document.getElementById('site-title');
+const siteDesc = document.getElementById('site-desc');
+
+
+// Dil dosyasını fetch edip içeriğe yerleştirir
+async function loadLang(lang){
+// buton aktifliğini ayarla
+btnEn.classList.toggle('active', lang === 'en');
+btnTr.classList.toggle('active', lang === 'tr');
+
+
+try{
+const res = await fetch(`/lang/${lang}.html`, {cache: 'no-cache'});
+if(!res.ok) throw new Error(res.status + ' ' + res.statusText);
+const html = await res.text();
+content.innerHTML = html;
+
+
+// opsiyonel: eğer dil dosyası başlık/metin içeriyorsa kullan
+const metaTitle = content.querySelector('[data-site-title]')?.dataset?.siteTitle;
+const metaDesc = content.querySelector('[data-site-desc]')?.dataset?.siteDesc;
+if(metaTitle) siteTitle.textContent = metaTitle;
+if(metaDesc) siteDesc.textContent = metaDesc;
+
+
+localStorage.setItem('site_lang', lang);
+}catch(err){
+content.innerHTML = `<h1>Error loading language: ${lang}</h1><p>${err.message}</p>`;
+}
+}
+
+
+btnEn.addEventListener('click', ()=> loadLang('en'));
+btnTr.addEventListener('click', ()=> loadLang('tr'));
+
+
+// sayfa yüklenince varsayılan dili aç
+loadLang(defaultLang);
+</script>
+</body>
+</html>
