@@ -1,3 +1,7 @@
+
+
+
+
 :root {
   --color-bg-light: #f5f6fa;
   --color-bg-dark: #222d3a;
@@ -83,3 +87,12 @@ html[data-theme="dark"] #surprise {
   background: rgba(44,130,201,0.15);
   color: #fff;
 }
+
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+
