@@ -1,0 +1,31 @@
+
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+.container {
+  text-align: center;
+  padding: 50px;
+}
+
+#clock {
+  font-size: 48px;
+  margin: 20px 0;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+.light-theme {
+  background: #fff;
+  color: #000;
+}
+
+.dark-theme {
+  background: #000;
+  color: #fff;
+}
