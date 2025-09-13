@@ -1,109 +1,94 @@
 <!doctype html>
-.lang-switch{display:flex;gap:8px}
-button{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:8px;color:var(--text);cursor:pointer}
-button.active{background:rgba(255,255,255,0.06)}
-main h1{margin:0 0 10px}
-.meta{opacity:0.85;font-size:0.95rem}
-</style>
-</head>
-<body>
-<div class="card">
-<header>
-<div>
-<strong id="site-title">Multilingual Demo</strong>
-<div class="meta" id="site-desc">A tiny static example with language files in <code>/lang/</code></div>
-</div>
-<div class="lang-switch" aria-label="Language switcher">
-<button id="btn-en">English</button>
-<button id="btn-tr">Türkçe</button>
-</div>
-</header>
 
-
-<main id="content">
-<!-- dil dosyası buraya yüklenecek -->
-<h1>Loading…</h1>
-</main>
-
-
-<footer style="margin-top:18px;font-size:0.9rem;opacity:0.8">Dil dosyaları: <code>/lang/en.html</code> ve <code>/lang/tr.html</code></footer>
-</div>
-
-
-<script>
-// Varsayılan dil
-const defaultLang = localStorage.getItem('site_lang') || navigator.language?.startsWith('tr') ? 'tr' : 'en';
-
-
-const btnEn = document.getElementById('btn-en');
-const btnTr = document.getElementById('btn-tr');
-const content = document.getElementById('content');
-const siteTitle = document.getElementById('site-title');
-const siteDesc = document.getElementById('site-desc');
-
-
-// Dil dosyasını fetch edip içeriğe yerleştirir
-async function loadLang(lang){
-// buton aktifliğini ayarla
-btnEn.classList.toggle('active', lang === 'en');
-btnTr.classList.toggle('active', lang === 'tr');
-
-
-try{
-const res = await fetch(`/lang/${lang}.html`, {cache: 'no-cache'});
-if(!res.ok) throw new Error(res.status + ' ' + res.statusText);
-const html = await res.text();
-content.innerHTML = html;
-
-
-// opsiyonel: eğer dil dosyası başlık/metin içeriyorsa kullan
-const metaTitle = content.querySelector('[data-site-title]')?.dataset?.siteTitle;
-const metaDesc = content.querySelector('[data-site-desc]')?.dataset?.siteDesc;
-if(metaTitle) siteTitle.textContent = metaTitle;
-if(metaDesc) siteDesc.textContent = metaDesc;
-
-
-localStorage.setItem('site_lang', lang);
-}catch(err){
-content.innerHTML = `<h1>Error loading language: ${lang}</h1><p>${err.message}</p>`;
-}
-}
-
-
-btnEn.addEventListener('click', ()=> loadLang('en'));
-btnTr.addEventListener('click', ()=> loadLang('tr'));
-
-
-// sayfa yüklenince varsayılan dili aç
-loadLang(defaultLang);
-</script>
-</body>
-</html>
-
-<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Çok Dilli Saat</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--text:#e6eef8}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;min-height:100vh;background:linear-gradient(180deg,#071023 0%,#07182b 100%);color:var(--text);display:flex;align-items:center;justify-content:center}
+    .container{width:min(600px,94vw);background:rgba(255,255,255,0.03);padding:28px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6);text-align:center}
+    h1{margin-bottom:14px}
+    #clock{font-size:2rem;margin-bottom:20px}
+    .controls{display:flex;justify-content:center;gap:12px}
+    select,button{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--text);cursor:pointer}
+    select{background:#0b1220}
+    button:hover,select:hover{background:rgba(255,255,255,0.1)}
+  </style>
 </head>
 <body>
   <div class="container">
     <h1 id="title">Saat</h1>
     <div id="clock">00:00:00</div>
 
-    <div class="controls">
-      <select id="languageSelector">
-        <option value="tr">Türkçe</option>
-        <option value="el">Ελληνικά</option>
-        <option value="it">Italiano</option>
-        <option value="zh">古中文</option>
-      </select>
+```
+<div class="controls">
+  <select id="languageSelector">
+    <option value="tr">Türkçe</option>
+    <option value="en">English</option>
+    <option value="el">Ελληνικά</option>
+    <option value="it">Italiano</option>
+    <option value="zh">古中文</option>
+  </select>
 
-      <button id="themeToggle">Tema Değiştir</button>
-    </div>
+  <button id="themeToggle">Tema Değiştir</button>
+</div>
+```
+
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const title = document.getElementById('title');
+    const clock = document.getElementById('clock');
+    const languageSelector = document.getElementById('languageSelector');
+    const themeToggle = document.getElementById('themeToggle');
+
+    // Dil metinleri
+    const translations = {
+      tr: {title: 'Saat'},
+      en: {title: 'Clock'},
+      el: {title: 'Ρολόι'},
+      it: {title: 'Orologio'},
+      zh: {title: '時鐘'}
+    };
+
+    // Saat güncelleme
+    function updateClock(){
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2,'0');
+      const m = String(now.getMinutes()).padStart(2,'0');
+      const s = String(now.getSeconds()).padStart(2,'0');
+      clock.textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock,1000);
+    updateClock();
+
+    // Dil seçimi
+    languageSelector.addEventListener('change', ()=>{
+      const lang = languageSelector.value;
+      title.textContent = translations[lang]?.title || 'Clock';
+      localStorage.setItem('clock_lang', lang);
+    });
+
+    // Varsayılan dil yükle
+    const savedLang = localStorage.getItem('clock_lang') || 'tr';
+    languageSelector.value = savedLang;
+    title.textContent = translations[savedLang]?.title;
+
+    // Tema değiştir
+    themeToggle.addEventListener('click', ()=>{
+      document.body.classList.toggle('light');
+      if(document.body.classList.contains('light')){
+        document.body.style.background = '#f4f4f4';
+        document.body.style.color = '#111';
+      }else{
+        document.body.style.background = 'linear-gradient(180deg,#071023 0%,#07182b 100%)';
+        document.body.style.color = 'var(--text)';
+      }
+    });
+  </script>
+
 </body>
 </html>
