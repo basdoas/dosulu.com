@@ -126,3 +126,28 @@ Object.entries(window.LANGUAGES).forEach(([code, langObj]) => {
   opt.textContent = langObj.__name;
   langSelect.appendChild(opt);
 }
+
+
+
+
+
+
+const translations = {
+  en: { title: "World Clock", description: "...", clockLabel: "Time:", languageLabel: "Language:" },
+  tr: { title: "Dünya Saati", description: "...", clockLabel: "Saat:", languageLabel: "Dil:" },
+  el: { title: "Παγκόσμιο Ρολόι", description: "...", clockLabel: "Ώρα:", languageLabel: "Γλώσσα:" }
+};
+
+function applyTranslations(lang) {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    el.textContent = translations[lang][key] || el.textContent;
+  });
+}
+
+document.getElementById("lang-select").addEventListener("change", (e) => {
+  applyTranslations(e.target.value);
+});
+
+applyTranslations("en");
+
