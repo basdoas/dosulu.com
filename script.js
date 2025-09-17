@@ -25,6 +25,7 @@ function updateDate() {
     day: "numeric"
   };
 
+  // Güncel tarihi yazdır
   date.textContent = now.toLocaleDateString(lang, options);
 }
 
