@@ -74,3 +74,37 @@ themeToggle.addEventListener("click", () => {
 
 // 8. Başlangıç teması
 body.classList.add("light-theme");
+
+
+function loadModule(module) {
+  const content = document.getElementById("main-content");
+  content.innerHTML = ""; // Temizle
+
+  if (module === "datetime") {
+    const clockBox = document.createElement("div");
+    clockBox.id = "clock-box";
+    content.appendChild(clockBox);
+
+    function updateClock() {
+      const now = new Date();
+      const lang = document.getElementById("lang").value || "tr";
+
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      };
+
+      const formatted = now.toLocaleString(lang, options);
+      clockBox.innerHTML = `<h2>${formatted}</h2>`;
+    }
+
+    updateClock(); // İlk çağrı
+    setInterval(updateClock, 1000); // Her saniye güncelle
+  }
+}
+
