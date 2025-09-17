@@ -1,33 +1,42 @@
-
-
-body {
-  margin: 0;
-  font-family: sans-serif;
-  transition: background 0.3s, color 0.3s;
+body.light-theme {
+  background-color: #f0f0f0;
+  color: #222;
 }
 
-.container {
+body.dark-theme {
+  background-color: #121212;
+  color: #eee;
+}
+
+#language-selector,
+#theme-controls {
+  margin: 20px;
+}
+
+button {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+body.light-theme button {
+  color: #222;
+}
+
+body.dark-theme button {
+  color: #eee;
+}
+
+#clock, #date {
+  font-size: 2rem;
   text-align: center;
-  padding: 50px;
-}
-
-#clock {
-  font-size: 48px;
-  margin: 20px 0;
-}
-
-.controls {
   margin-top: 20px;
 }
 
-.light-theme {
-  background: #fff;
-  color: #000;
-}
 
-.dark-theme {
-  background: #000;
-  color: #fff;
-}
+
 
 
