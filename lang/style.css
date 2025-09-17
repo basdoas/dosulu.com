@@ -29,3 +29,12 @@ body {
   background: #000;
   color: #fff;
 }
+#theme-controls button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.3s ease;
+}
+
