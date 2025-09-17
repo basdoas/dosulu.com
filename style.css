@@ -7,36 +7,97 @@ body.dark-theme {
   background-color: #121212;
   color: #eee;
 }
-
-#language-selector,
-#theme-controls {
-  margin: 20px;
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, color 0.3s;
 }
 
-button {
+body.light-theme {
+  background: #f0f0f0;
+  color: #222;
+}
+
+body.dark-theme {
+  background: #181c24;
+  color: #eee;
+}
+
+.container {
+  background: rgba(255,255,255,0.85);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  padding: 32px 28px 24px 28px;
+  min-width: 340px;
+  max-width: 95vw;
+  text-align: center;
+}
+
+body.dark-theme .container {
+  background: rgba(24,28,36,0.92);
+}
+
+.site-title {
+  margin-bottom: 18px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 10px;
+}
+
+.theme-buttons button {
   font-size: 1.5rem;
   background: none;
   border: none;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 6px;
+  transition: color 0.2s;
 }
 
-body.light-theme button {
+.theme-buttons button:last-child {
+  margin-right: 0;
+}
+
+body.light-theme .theme-buttons button {
   color: #222;
 }
 
-body.dark-theme button {
+body.dark-theme .theme-buttons button {
   color: #eee;
 }
 
-#clock, #date {
-  font-size: 2rem;
-  text-align: center;
-  margin-top: 20px;
+.clock-card {
+  background: rgba(255,255,255,0.7);
+  border-radius: 12px;
+  padding: 22px 10px;
+  margin-top: 10px;
+  box-shadow: 0 2px 12px 0 rgba(31,38,135,0.08);
 }
 
+body.dark-theme .clock-card {
+  background: rgba(24,28,36,0.85);
+}
 
+.clock {
+  font-size: 2.8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
 
-
-
+.date {
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
 
