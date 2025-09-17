@@ -6,32 +6,33 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="language-selector">
-    <label for="languageSelector">Dil Seç:</label>
-    <select id="languageSelector">
-      <option value="tr">Türkçe</option>
-      <option value="en">English</option>
-      <option value="ru">Русский</option>
-      <option value="zh">中文</option>
-      <option value="de">Deutsch</option>
-      <option value="ja">日本語</option>
-      <option value="it">Italiano</option>
-    </select>
+  <div class="container">
+    <h1 class="site-title">Canlı Saat ve Tarih</h1>
+    <div class="controls">
+      <div>
+        <label for="languageSelector">Dil Seç:</label>
+        <select id="languageSelector">
+          <option value="tr-TR">Türkçe</option>
+          <option value="en-US">English</option>
+          <option value="de-DE">Deutsch</option>
+          <option value="fr-FR">Français</option>
+          <option value="ru-RU">Русский</option>
+          <option value="zh-CN">中文</option>
+          <option value="ja-JP">日本語</option>
+          <option value="it-IT">Italiano</option>
+        </select>
+      </div>
+      <div class="theme-buttons">
+        <button id="light-mode" title="Açık Tema">🌞</button>
+        <button id="dark-mode" title="Koyu Tema">🌙</button>
+        <button id="auto-mode" title="Otomatik Tema">⏱️</button>
+      </div>
+    </div>
+    <div class="clock-card">
+      <div id="clock" class="clock"></div>
+      <div id="date" class="date"></div>
+    </div>
   </div>
-
-  <div id="theme-controls">
-    <button id="light-mode">🌞</button>
-    <button id="dark-mode">🌙</button>
-    <button id="auto-mode">⏱️</button>
-  </div>
-
-  <h1 id="title">Saat</h1>
-  <div id="clock"></div>
-  <div id="date"></div>
-
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
