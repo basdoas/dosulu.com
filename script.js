@@ -17,28 +17,23 @@ const translations = {
 function updateDate() {
   const now = new Date();
   const lang = languageSelector.value;
-
   const options = {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric"
   };
-
-  // Güncel tarihi yazdır
   date.textContent = now.toLocaleDateString(lang, options);
 }
 
 function updateClock() {
   const now = new Date();
   const lang = languageSelector.value;
-
   const timeString = now.toLocaleTimeString(lang, {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit"
   });
-
   clock.textContent = timeString;
   updateDate();
 }
