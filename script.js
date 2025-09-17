@@ -8,6 +8,7 @@ setInterval(updateClockAndDate, 1000);
 updateClockAndDate();
 
 const languageSelector = document.getElementById("languageSelector");
+const body = document.body;
 
 function updateClockAndDate() {
   const now = new Date();
@@ -29,3 +30,26 @@ languageSelector.addEventListener("change", updateClockAndDate);
 
 setInterval(updateClockAndDate, 1000);
 updateClockAndDate();
+
+// Tema kontrolü
+document.getElementById("light-mode").onclick = () => {
+  body.className = "light-theme";
+};
+document.getElementById("dark-mode").onclick = () => {
+  body.className = "dark-theme";
+};
+document.getElementById("auto-mode").onclick = () => {
+  setAutoTheme();
+};
+
+function setAutoTheme() {
+  const hour = new Date().getHours();
+  if (hour >= 22 || hour < 6) {
+    body.className = "dark-theme";
+  } else {
+    body.className = "light-theme";
+  }
+}
+
+// Sayfa ilk açıldığında otomatik tema uygula
+setAutoTheme();
