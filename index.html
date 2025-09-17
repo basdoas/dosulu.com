@@ -1,110 +1,37 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Çok Dilli Saat</title>
+  <title>Canlı Saat ve Tarih</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    :root{--bg:#0f172a;--card:#0b1220;--text:#e6eef8}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;min-height:100vh;background:linear-gradient(180deg,#071023 0%,#07182b 100%);color:var(--text);display:flex;align-items:center;justify-content:center}
-    .container{width:min(600px,94vw);background:rgba(255,255,255,0.03);padding:28px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6);text-align:center}
-    h1{margin-bottom:14px}
-    #clock{font-size:2rem;margin-bottom:20px}
-    .controls{display:flex;justify-content:center;gap:12px}
-    select,button{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--text);cursor:pointer}
-    select{background:#0b1220}
-    button:hover,select:hover{background:rgba(255,255,255,0.1)}
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1 id="title">Saat</h1>
-    <div id="clock">00:00:00</div>
-<div id="date">13 Eylül 2025</div>
-
-
-```
-<div class="controls">
-  <select id="languageSelector">
-    <option value="tr">Türkçe</option>
-    <option value="en">English</option>
-    <option value="el">Ελληνικά</option>
-    <option value="it">Italiano</option>
-    <option value="zh">古中文</option>
-  </select>
-
- <button id="themeToggle">🌗 Tema Değiştir</button>
-
-
-```
-
+  <div id="language-selector">
+    <label for="languageSelector">Dil Seç:</label>
+    <select id="languageSelector">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+      <option value="zh">中文</option>
+      <option value="de">Deutsch</option>
+      <option value="ja">日本語</option>
+      <option value="it">Italiano</option>
+    </select>
   </div>
 
-  <script>
-    const title = document.getElementById('title');
-    const clock = document.getElementById('clock');
-    const languageSelector = document.getElementById('languageSelector');
-    const themeToggle = document.getElementById('themeToggle');
+  <div id="theme-controls">
+    <button id="light-mode">🌞</button>
+    <button id="dark-mode">🌙</button>
+    <button id="auto-mode">⏱️</button>
+  </div>
 
-    // Dil metinleri
-    const translations = {
-      tr: {title: 'Saat'},
-      en: {title: 'Clock'},
-      el: {title: 'Ρολόι'},
-      it: {title: 'Orologio'},
-      zh: {title: '時鐘'}
-    };
+  <h1 id="title">Saat</h1>
+  <div id="clock"></div>
+  <div id="date"></div>
 
-    // Saat güncelleme
-    function updateClock(){
-      const now = new Date();
-      const h = String(now.getHours()).padStart(2,'0');
-      const m = String(now.getMinutes()).padStart(2,'0');
-      const s = String(now.getSeconds()).padStart(2,'0');
-      clock.textContent = `${h}:${m}:${s}`;
-    }
-    setInterval(updateClock,1000);
-    updateClock();
-
-    // Dil seçimi
-    languageSelector.addEventListener('change', ()=>{
-      const lang = languageSelector.value;
-      title.textContent = translations[lang]?.title || 'Clock';
-      localStorage.setItem('clock_lang', lang);
-    });
-
-    // Varsayılan dil yükle
-    const savedLang = localStorage.getItem('clock_lang') || 'tr';
-    languageSelector.value = savedLang;
-    title.textContent = translations[savedLang]?.title;
-
-    // Tema değiştir
-    themeToggle.addEventListener('click', ()=>{
-      document.body.classList.toggle('light');
-      if(document.body.classList.contains('light')){
-        document.body.style.background = '#f4f4f4';
-        document.body.style.color = '#111';
-      }else{
-        document.body.style.background = 'linear-gradient(180deg,#071023 0%,#07182b 100%)';
-        document.body.style.color = 'var(--text)';
-      }
-    });
-  </script>
-<script src="script.js"></script>
-
-
-
-<main id="main-content"></main>
-
-
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
 
 
 
