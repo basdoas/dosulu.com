@@ -62,4 +62,5 @@ document.getElementById("auto-mode").onclick = () => {
 
 body.classList.add("light-theme");
 
-
+const date = new Date();
+console.log(date);
