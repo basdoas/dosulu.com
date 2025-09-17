@@ -40,8 +40,9 @@ function updateClock() {
 
   clock.textContent = timeString;
   updateDate();
+}
 
-  setInterval(updateClock, 1000);
+setInterval(updateClock, 1000);
 updateClock();
 
 languageSelector.addEventListener("change", () => {
@@ -65,6 +66,4 @@ document.getElementById("auto-mode").onclick = () => {
 
 body.classList.add("light-theme");
 
-title.textContent = translations[languageSelector.value] || "Saat";
-updateClock();
-}
+
