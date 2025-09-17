@@ -52,4 +52,4 @@ function setAutoTheme() {
 }
 
 // Sayfa ilk açıldığında otomatik tema uygula
-setAutoTheme();
+setAutoTheme(); 
