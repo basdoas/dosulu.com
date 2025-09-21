@@ -20,3 +20,24 @@
     ]
 }
 
+{
+    "name": "Modern Mavi Site",
+    "short_name": "MaviSite",
+    "description": "Modern ve şık mavi tema ile tasarlanmış responsive website",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#64b5f6",
+    "theme_color": "#64b5f6",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
