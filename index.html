@@ -1,38 +1,97 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Canlı Saat ve Tarih</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Mavi Site</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1 class="site-title">Canlı Saat ve Tarih</h1>
-    <div class="controls">
-      <div>
-        <label for="languageSelector">Dil Seç:</label>
-        <select id="languageSelector">
-          <option value="tr-TR">Türkçe</option>
-          <option value="en-US">English</option>
-          <option value="de-DE">Deutsch</option>
-          <option value="fr-FR">Français</option>
-          <option value="ru-RU">Русский</option>
-          <option value="zh-CN">中文</option>
-          <option value="ja-JP">日本語</option>
-          <option value="it-IT">Italiano</option>
-        </select>
-      </div>
-      <div class="theme-buttons">
-        <button id="light-mode" title="Açık Tema">🌞</button>
-        <button id="dark-mode" title="Koyu Tema">🌙</button>
-        <button id="auto-mode" title="Otomatik Tema">⏱️</button>
-      </div>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text" data-i18n="loading-text">Yükleniyor...</p>
+        </div>
     </div>
-    <div class="clock-card">
-      <div id="clock" class="clock"></div>
-      <div id="date" class="date"></div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="logo">MaviSite</h1>
+                <nav class="nav">
+                    <!-- Language selector will be added here by JavaScript -->
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Tema değiştir">
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="hero-title" data-i18n="hero-title">Hoş Geldiniz</h2>
+                    <p class="hero-subtitle" data-i18n="hero-subtitle">Modern ve şık web deneyimi</p>
+                    
+                    <!-- Clock and Date -->
+                    <div class="datetime-container">
+                        <div class="time-display" id="time-display">
+                            <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+                        </div>
+                        <div class="date-display" id="date-display">
+                            <span id="day-name">Pazartesi</span>, <span id="day">01</span> <span id="month">Ocak</span> <span id="year">2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌙</div>
+                        <h3 data-i18n="feature-1-title">Karanlık Tema</h3>
+                        <p data-i18n="feature-1-desc">Göz yormayan karanlık mod desteği</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 data-i18n="feature-2-title">Mobil Uyumlu</h3>
+                        <p data-i18n="feature-2-desc">Tüm cihazlarda mükemmel görünüm</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 data-i18n="feature-3-title">Hızlı Yükleme</h3>
+                        <p data-i18n="feature-3-desc">Optimize edilmiş performans</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-  </div>
-  <script src="script.js"></script>
+
+    <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
