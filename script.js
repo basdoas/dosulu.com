@@ -2,7 +2,7 @@
 const translations = {
     tr: {
         'loading-text': 'Yükleniyor...',
-        'logo': 'MaviSite',
+        'logo': 'dosulu.com',
         'hero-title': 'Hoş Geldiniz',
         'hero-subtitle': 'Modern ve şık web deneyimi',
         'feature-1-title': 'Karanlık Tema',
@@ -14,7 +14,7 @@ const translations = {
     },
     en: {
         'loading-text': 'Loading...',
-        'logo': 'BlueSite',
+        'logo': 'dosulu.com',
         'hero-title': 'Welcome',
         'hero-subtitle': 'Modern and elegant web experience',
         'feature-1-title': 'Dark Theme',
