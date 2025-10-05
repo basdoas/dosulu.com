@@ -1,4 +1,5 @@
 // Translation object
+//test
 const translations = {
     tr: {
         'loading-text': 'Yükleniyor...',
