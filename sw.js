@@ -52,3 +52,61 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+const languageSelector = document.getElementById("languageSelector");
+const body = document.body;
+
+// Dil başlıkları (başlık alanı için)
+const titleTranslations = {
+  'tr-TR': 'Saat ve Tarih',
+  'en-US': 'Clock and Date',
+  'de-DE': 'Uhr und Datum',
+  'fr-FR': 'Horloge et Date',
+  'ru-RU': 'Часы и Дата',
+  'zh-CN': '时钟和日期',
+  'ja-JP': '時計と日付',
+  'it-IT': 'Orologio e Data'
+};
+
+function updateClockAndDate() {
+  const now = new Date();
+  const locale = languageSelector.value;
+  document.getElementById("clock").textContent = now.toLocaleTimeString(locale, {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+  document.getElementById("date").textContent = now.toLocaleDateString(locale, {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
+
+languageSelector.addEventListener("change", updateClockAndDate);
+
+setInterval(updateClockAndDate, 1000);
+updateClockAndDate();
+
+// Tema kontrolü
+document.getElementById("light-mode").onclick = () => {
+  body.className = "light-theme";
+};
+document.getElementById("dark-mode").onclick = () => {
+  body.className = "dark-theme";
+};
+document.getElementById("auto-mode").onclick = () => {
+  setAutoTheme();
+};
+
+function setAutoTheme() {
+  const hour = new Date().getHours();
+  if (hour >= 22 || hour < 6) {
+    body.className = "dark-theme";
+  } else {
+    body.className = "light-theme";
+  }
+}
+
+// Sayfa ilk açıldığında otomatik tema uygula
+setAutoTheme();
